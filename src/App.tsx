@@ -22,17 +22,10 @@ class App extends React.Component {
             component={Splash}
             options={{
               headerShown:false
-              // title: 'Splash Screen',
               // headerStyle: {
               //   backgroundColor: '#f4511e',
               // },
-              // headerTintColor: '#fff',
-              // headerTitleAlign:'center',
-              // headerTitleStyle: {
-              //   fontWeight: 'bold',
-                
-      
-              // },
+              
             }} 
             />
           <Stack.Screen

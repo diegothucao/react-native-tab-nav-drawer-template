@@ -10,6 +10,7 @@ import {
 import { StackHeaderProps } from '@react-navigation/stack';
 import AppColor from "../resources/colors/AppColor";
 import { Routes } from "../App";
+import ImagesFactory from "../resources/images/ImagesFactory";
 
 export interface HomeScreenProp extends StackHeaderProps {
 }
@@ -21,22 +22,37 @@ class HomeScreen extends React.Component<HomeScreenProp>{
 
   create = () => {
     this.props.navigation.navigate(Routes.createScreen)
-    
+
   }
   componentDidMount() {
     this.props.navigation.setOptions({
       headerTitle: 'Home ',
       headerTitleAlign: 'center',
+      headerTitleStyle: { color: 'white' },
+      headerStyle: { backgroundColor: 'red' },
+      headerRightContainerStyle: { marginRight: 14 },
       headerRight: () =>
         (<TouchableOpacity
           activeOpacity={0.5}
           onPress={() => this.create()}
         >
-          <Text style={{ color: AppColor.lightYellow, alignSelf: "center", fontSize: 18 }}>
-            Add
-        </Text>
-        </TouchableOpacity>)
+          <Image
+            source={ImagesFactory.whiteAddBtn}
+            style={styles.addButon}
+          />
+        </TouchableOpacity>),
+      headerLeftContainerStyle: { marginLeft: 14 },
+      headerLeft: () => (<TouchableOpacity
+        activeOpacity={0.5}
+        onPress={() => this.props.navigation.goBack()}
+      >
+        <Image
+          source={ImagesFactory.whiteBackBtn}
+        // style={styles.backButon}
+        />
+      </TouchableOpacity>)
     })
+
   }
 
   render() {
@@ -64,7 +80,13 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     flexDirection: "column",
     justifyContent: "center",
-    backgroundColor: "red"
+    backgroundColor: "white"
+  },
+  addButon: {
+    alignItems: "center",
+    marginLeft: 14,
+    width: 30,
+    justifyContent: "flex-start"
   }
 
 });

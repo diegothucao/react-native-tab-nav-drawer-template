@@ -3,51 +3,33 @@ import {
   StyleSheet,
   View,
   Text,
-  FlatList,
   TouchableOpacity,
   Image
 } from "react-native";
 import { StackHeaderProps } from '@react-navigation/stack';
 import AppColor from "../resources/colors/AppColor";
-import { Routes } from "../App";
 
-export interface HomeScreenProp extends StackHeaderProps {
+export interface CreateScreenProp extends StackHeaderProps {
 }
 
-class HomeScreen extends React.Component<HomeScreenProp>{
+class CreateScreen extends React.Component <CreateScreenProp>{
   constructor(props: any) {
     super(props);
   }
 
-  create = () => {
-    this.props.navigation.navigate(Routes.createScreen)
-    
-  }
   componentDidMount() {
-    this.props.navigation.setOptions({
-      headerTitle: 'Home ',
-      headerTitleAlign: 'center',
-      headerRight: () =>
-        (<TouchableOpacity
-          activeOpacity={0.5}
-          onPress={() => this.create()}
-        >
-          <Text style={{ color: AppColor.lightYellow, alignSelf: "center", fontSize: 18 }}>
-            Add
-        </Text>
-        </TouchableOpacity>)
-    })
+    this.props.navigation.setOptions({ headerTitle: 'Create Screen ',headerTitleAlign:'center' } )
   }
-
-  render() {
-    return (
+  
+  render() { 
+    return  (
       <View style={styles.container}>
         <TouchableOpacity
           activeOpacity={0.5}
           onPress={() => this.props.navigation.goBack()}
         >
           <Text style={{ color: AppColor.lightYellow, alignSelf: "center", fontSize: 30 }}>
-            Back
+          Create 
         </Text>
         </TouchableOpacity>
       </View>
@@ -55,7 +37,7 @@ class HomeScreen extends React.Component<HomeScreenProp>{
   }
 }
 
-export default (HomeScreen);
+export default (CreateScreen);
 
 const styles = StyleSheet.create({
   container: {
@@ -66,5 +48,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "red"
   }
-
+ 
 });

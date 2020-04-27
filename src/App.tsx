@@ -4,39 +4,66 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Splash from './Splash';
 import HomeScreen from './ui/HomeScreen';
 import CreateScreen from './ui/CreateScreen'
-const Stack = createStackNavigator();
+import SettingScreen from './ui/SettingScreen'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+const HomeStack = createStackNavigator();
+const MainStack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
 export enum Routes {
   splash = "splash",
   homeScreen = "homeScreen",
-  createScreen = "createScreen"
+  createScreen = "createScreen",
+  settingScreen = "Setting",
+  tabHome = "tabHome",
+  home = "Home"
 }
 
 class App extends React.Component {
 
+  HomeStackScreen = () => {
+    return (
+      <HomeStack.Navigator >
+        <HomeStack.Screen
+          name={Routes.homeScreen}
+          component={HomeScreen}
+        />
+        <HomeStack.Screen
+          name={Routes.createScreen}
+          component={CreateScreen}
+        />
+      </HomeStack.Navigator>
+    )
+  }
+
+  TabHome = () => {
+    return (
+      <Tab.Navigator initialRouteName={Routes.splash} >
+        <Tab.Screen name={Routes.home} component={this.HomeStackScreen} />
+        <Tab.Screen name={Routes.settingScreen} component={SettingScreen} />
+      </Tab.Navigator>
+    );
+  }
   render() {
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName={Routes.splash}>
-          <Stack.Screen
+        <MainStack.Navigator initialRouteName={Routes.splash}>
+          <MainStack.Screen
             name={Routes.splash}
             component={Splash}
             options={{
-              headerShown:false
-              // headerStyle: {
-              //   backgroundColor: '#f4511e',
-              // },
-              
-            }} 
-            />
-          <Stack.Screen
-            name={Routes.homeScreen}
-            component={HomeScreen}
+              headerShown: false
+            }}
           />
-          <Stack.Screen
-            name={Routes.createScreen}
-            component={CreateScreen}
+          <MainStack.Screen
+            name={Routes.tabHome}
+            component={this.TabHome}
+            options={{
+              headerShown: false
+            }}
           />
-        </Stack.Navigator>
+        </MainStack.Navigator>
       </NavigationContainer>
     );
   }

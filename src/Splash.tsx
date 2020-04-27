@@ -20,7 +20,7 @@ export default class Splash extends Component<Props> {
   }
 
   gotoHomeScreen = () => {
-    this.props.navigation.navigate(Routes.homeScreen)
+    this.props.navigation.navigate(Routes.tabHome)
   }
 
   render() {

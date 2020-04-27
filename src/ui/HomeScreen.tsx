@@ -8,6 +8,7 @@ import {
   Image
 } from "react-native";
 import { StackHeaderProps } from '@react-navigation/stack';
+
 import AppColor from "../resources/colors/AppColor";
 import { Routes } from "../App";
 import ImagesFactory from "../resources/images/ImagesFactory";
@@ -25,6 +26,7 @@ class HomeScreen extends React.Component<HomeScreenProp>{
 
   }
   componentDidMount() {
+    
     this.props.navigation.setOptions({
       headerTitle: 'Home ',
       headerTitleAlign: 'center',

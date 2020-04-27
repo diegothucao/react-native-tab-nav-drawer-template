@@ -6,6 +6,8 @@ import HomeScreen from './ui/HomeScreen';
 import CreateScreen from './ui/CreateScreen'
 import SettingScreen from './ui/SettingScreen'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import AppColor from './resources/colors/AppColor';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const HomeStack = createStackNavigator();
 const MainStack = createStackNavigator();
@@ -39,7 +41,27 @@ class App extends React.Component {
 
   TabHome = () => {
     return (
-      <Tab.Navigator initialRouteName={Routes.splash} >
+      <Tab.Navigator initialRouteName={Routes.splash}
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === Routes.home) {
+              iconName = focused
+                ? 'md-home'
+                : 'md-home';
+            } else if (route.name === Routes.settingScreen) {
+              iconName = focused ? 'ios-list-box' : 'ios-list';
+            }
+
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+        })}
+        tabBarOptions={{
+          activeTintColor: AppColor.lightYellow,
+          inactiveTintColor: AppColor.lightGrey,
+        }} >
         <Tab.Screen name={Routes.home} component={this.HomeStackScreen} />
         <Tab.Screen name={Routes.settingScreen} component={SettingScreen} />
       </Tab.Navigator>
